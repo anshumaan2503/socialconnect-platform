@@ -1,0 +1,22 @@
+# Dependency directories
+node_modules/
+
+# Local configuration / Environment variables
+.env
+
+# Uploads directory (not needed with Cloudinary integration, but added for safety)
+uploads/
+temp/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
