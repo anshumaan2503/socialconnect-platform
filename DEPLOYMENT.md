@@ -4,6 +4,14 @@ This guide details the steps required to deploy the SocialConnect full-stack app
 
 ---
 
+## 🚀 Live Deployed Project Links
+
+* **Frontend UI (Vercel)**: [https://socialconnect-platform.vercel.app](https://socialconnect-platform.vercel.app)
+* **Backend API (Render)**: [https://socialconnect-platform.onrender.com](https://socialconnect-platform.onrender.com)
+* **API Health check**: [https://socialconnect-platform.onrender.com/api/health](https://socialconnect-platform.onrender.com/api/health)
+
+---
+
 ## 1. Backend Deployment (Render)
 
 We will deploy the Node.js/Express backend to **Render** as a **Web Service**.
