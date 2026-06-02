@@ -84,11 +84,11 @@ const PostCard = ({ post }) => {
       <Box sx={{ p: 2, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Avatar 
-            src={post.avatar || ''} 
-            alt={`${post.username || 'User'}'s avatar`}
+            src={post.author?.avatar || ''} 
+            alt={`${post.author?.username || 'User'}'s avatar`}
             sx={{ width: 40, height: 40, border: '1px solid var(--outline-variant)' }}
           >
-            {post.username ? post.username.substring(0, 2).toUpperCase() : 'U'}
+            {post.author?.username ? post.author.username.substring(0, 2).toUpperCase() : 'U'}
           </Avatar>
           <Box>
             <Typography 
@@ -101,7 +101,7 @@ const PostCard = ({ post }) => {
                 '&:hover': { textDecoration: 'underline' }
               }}
             >
-              {post.username}
+              {post.author?.username}
             </Typography>
             <Typography sx={{ fontFamily: 'Inter', fontSize: '13px', color: 'var(--on-surface-variant)' }}>
               {post.timestamp || formatTimeAgo(post.createdAt)}
@@ -115,21 +115,24 @@ const PostCard = ({ post }) => {
       </Box>
 
       {/* Post Text */}
-      <Box sx={{ px: 2, pb: 1.5 }}>
-        <Typography 
-          sx={{ 
-            fontFamily: 'Inter', 
-            fontSize: '15px', 
-            lineHeight: 1.6, 
-            color: 'var(--on-surface)' 
-          }}
-        >
-          {post.text}
-        </Typography>
-      </Box>
+      {post.content?.text && (
+        <Box sx={{ px: 2, pb: 1.5 }}>
+          <Typography 
+            sx={{ 
+              fontFamily: 'Inter', 
+              fontSize: '15px', 
+              lineHeight: 1.6, 
+              color: 'var(--on-surface)',
+              whiteSpace: 'pre-wrap'
+            }}
+          >
+            {post.content.text}
+          </Typography>
+        </Box>
+      )}
 
       {/* Post Image */}
-      {post.imageUrl && (
+      {post.content?.imageUrl && (
         <Box 
           sx={{ 
             width: '100%', 
@@ -143,7 +146,7 @@ const PostCard = ({ post }) => {
         >
           <Box 
             component="img"
-            src={post.imageUrl}
+            src={post.content.imageUrl}
             alt="Post image attachment"
             sx={{
               width: '100%',

@@ -3,8 +3,10 @@ import { Box, Avatar, TextField, Button, Alert, CircularProgress } from '@mui/ma
 import ImagePreview from './ImagePreview';
 import useUiStore from '../../store/uiStore';
 import usePostStore from '../../store/postStore';
+import useAuthStore from '../../store/authStore';
 
 const CreatePostCard = () => {
+  const user = useAuthStore((state) => state.user);
   const showToast = useUiStore((state) => state.showToast);
   const createPost = usePostStore((state) => state.createPost);
   const fetchPosts = usePostStore((state) => state.fetchPosts);
@@ -96,10 +98,12 @@ const CreatePostCard = () => {
     >
       <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1.5 }}>
         <Avatar 
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-7bWvIPbjA-P6kd2_J9V7R8vrnHy6KEHMQyUxwRdinbGSoHhSuz43vFWqYyMmMUxiLEvplsEd3rppvAgriUZYmTf20HUaQtoyPrD6X9CALbcz_D6ODSq7F-dhsSuz8bPsVVXKQU-0k7kvL_HImBxIhvg9sDvPDQqIy3Vv_2CgoXTjIzKwopN1tuzySkLf2X7X6TcxThUKReizctjRd5HKhQbsgcodiugcfs6s2dQo7WF7DOVaMSViLk7oir60id6e4UalL98_0oY" 
+          src={user?.avatar || ''} 
           alt="Current user avatar"
           sx={{ width: 40, height: 40 }}
-        />
+        >
+          {user?.username ? user.username.substring(0, 2).toUpperCase() : 'U'}
+        </Avatar>
         <Box sx={{ flex: 1 }}>
           <TextField
             placeholder="What's on your mind?"
